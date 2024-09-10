@@ -1,0 +1,170 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 24px;
+  color: #407BFF;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.progressBarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.progressTextNumber {
+  display: flex;
+  width: 280px;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: -7px;
+}
+
+.progressText {
+  font-size: 12px;
+  font-weight: 400;
+  color: #407BFF;
+}
+
+.progressTextM {
+  font-size: 16px;
+  font-weight: 500;
+  color: #407BFF;
+}
+
+.marks {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  height: 0;
+}
+
+.mark {
+  position: absolute;
+  width: 1px;
+  height: 8px;
+  background-color: #D7E3FF;
+}
+
+.progressBar {
+  position: relative;
+  flex-grow: 1;
+  width: 256px;
+  margin-left: 10px;
+  margin-right: 14px;
+  opacity: 0px;
+  height: 8px;
+  background-color: #D7E3FF;
+  border-radius: 5px;
+  margin-bottom: 16px;
+}
+
+.progress {
+  background-color: #9EBBFF;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 256px;
+}
+
+.thumb {
+  position: absolute;
+  top: -4px;
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border: 1px solid #407BFF;
+  border-radius: 50%;
+}
+
+.centerMark {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 16px;
+  color: #407BFF;
+  font-size: 14px;
+}
+
+.addWaterButton {
+  display: flex;
+  justify-content: center;
+  background-color: #407BFF;
+  color: #FFFFFF;
+  width: 280px;
+  font-size: 18px;
+  margin-top: 40px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px 0px #407BFF57;
+  cursor: pointer;
+}
+
+.addWaterButton:hover {
+  background-color: #407BFF;
+  box-shadow: 0px 4px 14px 0px #407BFF8A;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 20px;
+  color: #FFFFFF;
+}
+
+@media screen and (min-width: 768px) {
+
+  .container {
+    margin-top: -150px;
+  }
+
+  .progressBarContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .addWaterButton {
+    width: 336px;
+    margin-top: 0px;
+    margin-top: -10px;
+  }
+
+  .title {
+    margin-bottom: 16px;
+  }
+
+  .progressBar {
+    width: 325px;
+  }
+
+  .progressTextNumber {
+    width: 356px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .progressBar {
+    width: 360px;
+  }
+
+  .progressTextNumber {
+    width: 391px;
+  }
+
+  .addWaterButton {
+    width: 178px;
+    padding: 10px 10px;
+  }
+}
