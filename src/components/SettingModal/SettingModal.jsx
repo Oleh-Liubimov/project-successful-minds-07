@@ -12,6 +12,7 @@ import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { changeAvatar, fetchUser, updateUser } from '../../redux/user/operations';
+
 import { selectUser } from '../../redux/auth/selectors';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -20,6 +21,7 @@ import { ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 import css from './SettingModal.module.css';
+import { refreshUser } from '../../redux/auth/operations';
 
 const FeedbackSchema = Yup.object().shape({
   gender: Yup.string().oneOf(['male', 'female'] )
@@ -76,13 +78,13 @@ function SettingModal() {
         gender: selectedGender,
         name: values.name,
         email: values.email,
-        password: values.nPassword
-      })
-            
+        password: values.nPassword || values.password
+      })           
     ).unwrap();
-      if (result) {
-        actions.resetForm();
-        handleClose();
+      if (updateUser.fulfilled) {
+        actions.resetForm(result);
+        setOpen(false);
+        dispatch(refreshUser());
       }
     } catch (error) {
       toast.error('Something went wrong :( Try again later.');
@@ -102,7 +104,7 @@ function SettingModal() {
     }
   };
 // radio groop
-const [selectedGender, setSelectedGender] = useState('female');
+const [selectedGender, setSelectedGender] = useState();
 const handleGenderChange = (event) => {
   setSelectedGender(event.target.value);
 };
@@ -150,7 +152,7 @@ const handleGenderChange = (event) => {
                       <div className={css.changeAvatar}>
                         <img
                           src={ selectedFile ? (URL.createObjectURL(selectedFile)) :
-                            (userData.avatarUrl ||
+                            (userData?.avatarUrl ||
                             'public/images/setting/Avatar.jpg')
                           }
                           alt="Avatar"
@@ -170,8 +172,9 @@ const handleGenderChange = (event) => {
                          row
                          aria-labelledby="gender-radio-group-label"                         
                          name="gender"
-                         value={selectedGender}
-                        onChange={handleGenderChange}                         
+                         value={selectedGender || userData?.gender}
+                        onChange={handleGenderChange}
+                                                 
                       >
                         <FormControlLabel
                           value="female"
